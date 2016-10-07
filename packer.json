@@ -1,0 +1,36 @@
+{
+    "builders": [{
+    "type": "virtualbox-iso",
+    "vboxmanage": [
+      [ "modifyvm", "{{.Name}}", "--natpf1", "winrm,tcp,,5985,,5985" ],
+      [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+      [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
+    ],
+    "guest_os_type": "Windows2012_64",
+    "iso_url": "../ISOs/Microsoft/9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO",
+    "iso_checksum": "c16ca71c0a0afb8a884bb7b14f2b5784dfa337a9ccc750eeaf96451dd6167d6979014e3f993701a6df4b8a2d419b1b1a50cb8be3e21e2888e828bf6d9d365428",
+    "iso_checksum_type": "sha512",
+    "communicator": "winrm",
+    "winrm_username": "vagrant",
+    "winrm_password": "vagrant",
+    "winrm_port": "5985",
+    "winrm_timeout": "5h",
+    "guest_additions_mode": "disable",
+    "shutdown_command": "C:/windows/system32/sysprep/sysprep.exe /generalize /oobe /unattend:C:/Windows/Panther/Unattend/unattend.xml /quiet /shutdown",
+    "shutdown_timeout": "15m",
+    "floppy_files": [
+      "Autounattend.xml",
+      "postunattend.xml",
+      "boxstarter.ps1",
+      "package.ps1"
+    ]
+  }],
+    "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": true,
+      "output": "windows2012r2-{{.Provider}}.box",
+      "vagrantfile_template": "vagrantfile.template"
+    }
+  ]
+}
