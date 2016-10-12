@@ -16,15 +16,23 @@
     "winrm_port": "5985",
     "winrm_timeout": "5h",
     "guest_additions_mode": "disable",
-    "shutdown_command": "C:/windows/system32/sysprep/sysprep.exe /generalize /oobe /unattend:C:/Windows/Panther/Unattend/unattend.xml /quiet /shutdown",
+    "shutdown_command": "a:/PackerShutdown.bat",
     "shutdown_timeout": "15m",
     "floppy_files": [
       "Autounattend.xml",
       "postunattend.xml",
       "boxstarter.ps1",
-      "package.ps1"
+      "package.ps1",
+      "PackerShutdown.bat",
+      "SetupComplete-2012.cmd",
+      "Test-Command.ps1"
     ]
   }],
+    "provisioners": [
+      {
+        "type": "powershell",
+        "script": "provision.ps1"
+    }],
     "post-processors": [
     {
       "type": "vagrant",
