@@ -1,3 +1,4 @@
 # Ignore packer build files
 output-virtualbox-iso
 packer_cache
+*.box
