@@ -15,7 +15,7 @@
     "winrm_username": "vagrant",
     "winrm_password": "vagrant",
     "winrm_port": "5985",
-    "winrm_timeout": "9h",
+    "winrm_timeout": "3h",
     "guest_additions_mode": "disable",
     "shutdown_command": "a:/PackerShutdown.bat",
     "shutdown_timeout": "15m",
